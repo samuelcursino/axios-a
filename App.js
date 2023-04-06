@@ -7,79 +7,39 @@ import {
 import estilo from './Estilo'
 import axios from 'axios'
  
-const App = () => {
-  const [texto, setTexto] = useState([]);
-  const [clicou, setClicou] = useState(false);
-  const [entrada, setEntrada] = useState('');
+function App(){
+  const [lista, setLista] = useState([]);
 
-  // useEffect(()=>{
-  //   alert('sempre dispara na renderização')
-  // })
-  
-  const pesquisa = () => {
-    axios.get('https://www.omdbapi.com/?apikey=d8a44ab&type=movie&r=json&page=1&s=love')
-    .then((response)=>{
-      setTexto(response.data)
-    })
-    .catch((error)=> {
-      console.log(error);
-    });
-  }
-
-  // useEffect(()=>{
-  //    alert('mensagem inicial')
-  //   }, [])
-    
   useEffect(()=>{
-    // if(clicou == true) 
-    // alert('Botão foi clidado e foi escrito: ' + (entrada))
-    // return ()=>{
-    // setClicou(false)
-    if(clicou == true) {
-      pesquisa()
-    } return ()=> {
-    setClicou(false)
-    }
-   }, [clicou])
-   
-   const Item = ({titulo, capa}) => {
-    return (
-      <View style={estilo.container}>
-        <Text>{titulo}</Text>
-        <Image source={{uri:capa}} style={{width:100, heigth:100, borderRadius: 15, margin:16}} />
-        <img src={capa}  style={{width:100, heigth:100, borderRadius: 10, margin:16}} />
-      </View>
-    )
-   }
+    listarDados();
+  },[])
 
-return (
-  <ScrollView>
-        <View style={estilo.container}>
-        <Text style={estilo.texto}>{JSON.stringify(texto.Search)}</Text>
+  async function listarDados(){
+    const res = await axios.get('http://localhost:8085/nomes');
+    setLista(res.data);
+    console.log(res.data);
+  }
+  
+  return (          
+      <div>
 
-            <TextInput style={estilo.caixa}
-            value={entrada}
-            onChangeText={(e)=>setEntrada(e)} />
+        {/* <h3 style={estilo.h3}>Id:</h3>        
+        <ul>{lista.map(item => (
+          <li style={estilo.texto}>{item.id}</li>          
+        ))}</ul> */}
 
-            <TouchableOpacity style={estilo.botao}
-              onPress={()=>{
-              setClicou(true)
-              // if(clicou == true) setClicou(false)
-              // Alert.alert('Botão Clicado ' + (clicou))
-            }}>
+        <h3 style={estilo.h3}>Nome:</h3>        
+        <ul>{lista.map(item => (
+          <li style={estilo.texto}>{item.nome}</li>          
+        ))}</ul>
+        
+        <h3 style={estilo.h3}>Sobrenome:</h3>
+        <ul>{lista.map(item => (
+          <li style={estilo.texto}>{item.sobrenome}</li>
+        ))}</ul>
+      </div>      
+  )
 
-              <Text style={estilo.textoBotao}>BUSCAR DADOS</Text>
-              </TouchableOpacity>
-
-              <FlatList
-              data={texto.Search}
-              renderItem={({item})=>< Item titulo={item.Title}capa={item.Poster}/>}
-              keyExtractor={(item)=>item.imdbID}
-              />
-
-        </View>
-        </ScrollView>
- )
 }
 
 export default App;

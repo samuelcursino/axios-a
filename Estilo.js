@@ -1,6 +1,10 @@
 import {StyleSheet} from "react-native";
 
 const Estilo = StyleSheet.create({
+    h3: {
+        color: 'black',
+        fontStyle: 'italic',
+    },
     container: {
         display: 'flex',
         flex: 1,
@@ -8,7 +12,7 @@ const Estilo = StyleSheet.create({
         alignItems: 'center', 
     },
     texto: {
-        fontSize: 25,
+        fontSize: 20,
         fontFamily: 'Times New Roman',
         color: 'blue',
     },
