@@ -1,9 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {
-  View, Text, TextInput, ScrollView,
-  Image, TouchableOpacity, Alert, FlatList, VirtualizedList
-}
-  from 'react-native'
+import {View, Text} from 'react-native'
 import estilo from './Estilo'
 import axios from 'axios'
  
@@ -22,7 +18,7 @@ function App(){
   
   return (          
       <View>
-        
+
         <Text style={estilo.titulo}>Nome:</Text>        
         <ul>{lista.map(item => (
           <li style={estilo.texto}>{item.nome}</li>          
