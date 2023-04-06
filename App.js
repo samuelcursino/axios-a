@@ -21,23 +21,18 @@ function App(){
   }
   
   return (          
-      <div>
-
-        {/* <h3 style={estilo.h3}>Id:</h3>        
-        <ul>{lista.map(item => (
-          <li style={estilo.texto}>{item.id}</li>          
-        ))}</ul> */}
-
-        <h3 style={estilo.h3}>Nome:</h3>        
+      <View>
+        
+        <Text style={estilo.titulo}>Nome:</Text>        
         <ul>{lista.map(item => (
           <li style={estilo.texto}>{item.nome}</li>          
         ))}</ul>
         
-        <h3 style={estilo.h3}>Sobrenome:</h3>
+        <Text style={estilo.titulo}>Sobrenome:</Text>
         <ul>{lista.map(item => (
           <li style={estilo.texto}>{item.sobrenome}</li>
         ))}</ul>
-      </div>      
+      </View>      
   )
 
 }

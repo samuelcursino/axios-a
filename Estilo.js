@@ -1,9 +1,11 @@
 import {StyleSheet} from "react-native";
 
 const Estilo = StyleSheet.create({
-    h3: {
+    titulo: {
         color: 'black',
         fontStyle: 'italic',
+        fontFamily: 'Times New Roman',
+        fontSize:25
     },
     container: {
         display: 'flex',
